@@ -1,0 +1,59 @@
+name: Build Blender Addon
+on:
+  workflow_dispatch:
+    inputs:
+      build_linux:
+        description: Build Linux tools
+        type: boolean
+        required: true
+        default: true
+      build_windows:
+        description: Build Windows tools
+        type: boolean
+        required: true
+        default: true
+      build_macos_x64:
+        description: Build MacOS x64 tools
+        type: boolean
+        required: true
+        default: true
+      build_macos_arm64:
+        description: Build MacOS ARM64 tools
+        type: boolean
+        required: true
+        default: true
+env:
+  ADDONNAME: uv-gami
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Extracting Version
+        run: echo "VERSION=$(grep -oP '^version *= *\"?\K[0-9|\.]+' blender_manifest.toml)" >> $GITHUB_ENV
+      - name: Download Tools
+        env:
+          BUILD_LINUX: ${{ github.event.inputs.build_linux == 'true' && '1' || '0' }}
+          BUILD_WINDOWS: ${{ github.event.inputs.build_windows == 'true' && '1' || '0' }}
+          BUILD_MACOS_X64: ${{ github.event.inputs.build_macos_x64 == 'true' && '1' || '0' }}
+          BUILD_MACOS_ARM64: ${{ github.event.inputs.build_macos_arm64 == 'true' && '1' || '0' }}
+        run: |
+          [[ $BUILD_LINUX = '1' || $BUILD_WINDOWS = '1' || $BUILD_MACOS_X64 = '1' || $BUILD_MACOS_ARM64 = '1' ]] || exit 0
+          gh release download "v$VERSION" -R 'https://github.com/danielboxer/UVgami' -p 'UVgami.zip' --dir package
+          mkdir bin; cd package; unzip *.zip
+          if [ $BUILD_LINUX = '1' ]; then mv bin/linux ../bin/; fi
+          if [ $BUILD_WINDOWS = '1' ]; then mv bin/windows ../bin/; fi
+          if [ $BUILD_MACOS_X64 = '1' ]; then mv bin/macos-x64 ../bin/; fi
+          if [ $BUILD_MACOS_ARM64 = '1' ]; then mv bin/macos-arm64 ../bin/; fi
+      - name: Building Addon
+        run: zip -9 -r -Z bzip2 "${ADDONNAME}-${VERSION}.zip" blender_manifest.toml __init__.py src bin
+      - name: Draft Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: v${{env.VERSION}}
+          tag_name: v${{env.VERSION}}
+          prerelease: false
+          draft: true
+          files: ${{env.ADDONNAME}}-${{env.VERSION}}.zip

@@ -7,15 +7,11 @@
 > [!NOTE]
 > Check the [user guide](https://uvgami.com/docs/) for more detailed documentation.
 
-1. Download the latest `UVgami.zip` release [here](https://github.com/danielboxer/UVgami/releases/latest)
+1. Download the latest `uv-gami.zip` release [here](https://github.com/RubisetCie/uv-gami/releases/latest)
 2. Drag and drop the zip file into Blender
-3. In Blender, press `Download Engine` in the n-panel
+3. In Blender, press `Download Engine` in the side-panel
 
 There are [three](#engines) supported engines.
-
-### Automatic Updates
-
-Add this repository URL: `https://uvgami.com/index.json` in Blender
 
 ![Elephant](docs/img/readme/elephant.jpg)
 
@@ -34,3 +30,7 @@ UVgami has three unwrapping engines, see the [docs](https://uvgami.com/docs/) fo
 - OptCuts (CPU): [OptCuts](https://github.com/liminchen/OptCuts) by Minchen Li et al. ([paper](https://www.cs.ubc.ca/labs/imager/tr/2018/OptCuts/))
 - xatlas (CPU): [xatlas](https://github.com/jpcy/xatlas) by Jonathan Young
 - PartUV (GPU): [PartUV](https://github.com/EricWang12/PartUV) by Zhaoning Wang et al. ([paper](https://arxiv.org/abs/2511.16659)). PartUV AI segmentation can't be used commercially (NVIDIA license)
+
+## Funding
+
+Support the [original author](https://github.com/danielboxer/UVgami) of the addon.

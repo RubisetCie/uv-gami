@@ -214,7 +214,7 @@ class UVGAMI_PT_main(bpy.types.Panel):
     bl_label = ""
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
-    bl_category = "UVgami"
+    bl_category = "Edit"
 
     def draw_header(self, context):
         props = context.scene.uvgami
@@ -289,7 +289,7 @@ class UVGAMI_PT_speed(EnginePanel, bpy.types.Panel):
     bl_label = "Speed"
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
-    bl_category = "UVgami"
+    bl_category = "Edit"
     bl_parent_id = "UVGAMI_PT_main"
     bl_options = {"DEFAULT_CLOSED"}
     bl_order = 2
@@ -352,7 +352,7 @@ class UVGAMI_PT_weights(bpy.types.Panel):
     bl_label = "Weights"
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
-    bl_category = "UVgami"
+    bl_category = "Edit"
     bl_parent_id = "UVGAMI_PT_main"
     bl_options = {"DEFAULT_CLOSED"}
     bl_order = 1
@@ -405,7 +405,7 @@ class UVGAMI_PT_advanced(EnginePanel, bpy.types.Panel):
     bl_label = "Advanced"
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
-    bl_category = "UVgami"
+    bl_category = "Edit"
     bl_parent_id = "UVGAMI_PT_main"
     bl_options = {"DEFAULT_CLOSED"}
     bl_order = 3
@@ -460,7 +460,7 @@ class UVGAMI_PT_grid(EnginePanel, bpy.types.Panel):
     bl_label = "Grid"
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
-    bl_category = "UVgami"
+    bl_category = "Edit"
     bl_parent_id = "UVGAMI_PT_misc"
     bl_options = {"DEFAULT_CLOSED"}
     bl_order = 2
@@ -491,7 +491,7 @@ class UVGAMI_PT_island_uv(bpy.types.Panel):
     bl_label = ""
     bl_space_type = "IMAGE_EDITOR"
     bl_region_type = "UI"
-    bl_category = "UVgami"
+    bl_category = "Edit"
 
     def draw_header(self, context):
         self.layout.label(text=read_manifest()["name"])
@@ -539,7 +539,7 @@ class UVGAMI_PT_island_settings(bpy.types.Panel):
     bl_label = "Settings"
     bl_space_type = "IMAGE_EDITOR"
     bl_region_type = "UI"
-    bl_category = "UVgami"
+    bl_category = "Edit"
     bl_parent_id = "UVGAMI_PT_island_uv"
     bl_options = {"DEFAULT_CLOSED"}
 
@@ -565,7 +565,7 @@ class UVGAMI_PT_pack(EnginePanel, bpy.types.Panel):
     bl_label = "Pack"
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
-    bl_category = "UVgami"
+    bl_category = "Edit"
     bl_parent_id = "UVGAMI_PT_misc"
     bl_options = {"DEFAULT_CLOSED"}
     bl_order = 1
@@ -592,7 +592,7 @@ class UVGAMI_PT_misc(EnginePanel, bpy.types.Panel):
     bl_label = "Misc"
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
-    bl_category = "UVgami"
+    bl_category = "Edit"
     bl_parent_id = "UVGAMI_PT_main"
     bl_options = {"DEFAULT_CLOSED"}
     bl_order = 4
